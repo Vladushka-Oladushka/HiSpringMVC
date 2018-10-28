@@ -22,9 +22,10 @@ public class Main {
         }
 
         Locale.setDefault(Locale.ENGLISH);
-
+        String user = "oladushka";
+        String pwd = "o1234";
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
-        DBConnection dbConnection = new DBConnection(url);
+        DBConnection dbConnection = new DBConnection(url, user, pwd);
         ResultSet queryResult = dbConnection.getResult(query);
         while (queryResult.next()) {
             String msg = queryResult.getString(2) + " " + queryResult.getString(3)+

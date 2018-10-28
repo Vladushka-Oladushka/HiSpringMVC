@@ -12,14 +12,16 @@ public class DBConnection {
     private Connection connection;
     private Statement statement;
     private String url;
+    private String user;
+    private String pwd;
 
-    public DBConnection(String url) {
+    public DBConnection(String url, String user, String pwd) {
         this.url = url;
+        this.user = user;
+        this.pwd = pwd;
     }
 
     private Connection connect() {
-        String user = "oladushka";
-        String pwd = "o1234";
 
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
