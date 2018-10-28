@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.nc.matsoft")
-public class WebAppConfig extends WebMvcConfigurerAdapter {
+public class WebAppConfig extends WebMvcConfigurerAdapter { //for some reason it doesn't work with "implements WebMvcCongigurer"...
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -25,5 +25,4 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         resolver.setViewClass(JstlView.class);
         return resolver;
     }
-
 }

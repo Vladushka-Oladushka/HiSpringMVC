@@ -11,6 +11,11 @@ public class DBConnection {
 
     private Connection connection;
     private Statement statement;
+    private String url;
+
+    public DBConnection(String url) {
+        this.url = url;
+    }
 
     private Connection connect() {
         String user = "oladushka";
@@ -19,14 +24,13 @@ public class DBConnection {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException e) {
-            LOGGER.log(Level.WARNING, "Oracle JDBC Driver is not found", e);
+            LOGGER.log(Level.SEVERE, "Oracle JDBC Driver is not found", e);
         }
 
-        String url = "jdbc:oracle:thin:@localhost:1521:XE";
         try {
             connection = DriverManager.getConnection(url, user, pwd);
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Connection Failed", e);
+            LOGGER.log(Level.SEVERE, "Connection Failed", e);
         }
 
         if (connection != null) {
@@ -44,7 +48,7 @@ public class DBConnection {
             statement = connect().createStatement();
             resultSet = statement.executeQuery(query);
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
+            LOGGER.log(Level.SEVERE, "", e);
         }
         return resultSet;
     }
@@ -54,6 +58,6 @@ public class DBConnection {
             statement.close();
             connection.close();
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
+            LOGGER.log(Level.SEVERE, "", e);
         }
     }}
